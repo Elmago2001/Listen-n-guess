@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego</title>
+</head>
+<body>
+    <div class="prep" id="prep"> 5 </div>
+    <div class="cambio" id="cambio"> 20 </div>
+    <div class="total" id="total"> 03:00 </div>
+    <script>
+      
+      let i = 5;
+      let k = 180;
+      let j = 20;
+      let intervaloi;
+      let intervalok;
+      let inetrvaloj;
+
+      const words = [
+            "apple", "book", "cat", "dog", "elephant", "fish", 
+            "grape", "house", "ice", "juice", 
+            "red", "lemon", "mouse", "notebook", "orange", 
+            "pencil", "queen", "rose", "sun", "tree", 
+            "umbrella", "lion", "water", "xylophone", "soccer", 
+            "zebra", "air", "ball", "car", "door", 
+            "egg", "fan", "gift", "hat", "igloo", 
+            "jam", "key", "lamp", "milk", "nose", 
+            "ocean", "paint", "quiet", "ring", "star", 
+            "table", "unicorn", "vase", "whale", "soda", 
+            "yellow", "zoo", "bat", "cup", "drum", 
+            "eye", "fork", "glove", "hand", "backpack", 
+            "jacket", "cute", "leaf", "moon", "neck", 
+            "owl", "pen", "bear", "rocket", "shoe", 
+            "tiger", "purple", "violin", "window", "ball", 
+            "yogurt", "zipper", "math", "bubble", "angry", 
+            "doll", "bacon", "flag", "guitar", "honey"];
+        console.log(words);
+
+        function prepracion(){
+            intervaloi = setInterval(comenzar, 1000);
+        }
+        
+        function aleatorio(){
+            const select  = words[Math.floor(Math.random()*words.length)];
+            document.getElementById("letras").innerText=select;
+        }
+
+        function game(){
+            aleatorio();
+        }
+
+
+
+
+    </script>
+</body>
+</html>
