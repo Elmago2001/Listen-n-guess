@@ -9,6 +9,9 @@
     <div class="prep" id="prep"> 5 </div>
     <div class="cambio" id="cambio"> 20 </div>
     <div class="total" id="total"> 03:00 </div>
+    <div class="letras" id="letras"></div>
+    
+    
     <script>
       
       let i = 5;
@@ -16,7 +19,7 @@
       let j = 20;
       let intervaloi;
       let intervalok;
-      let inetrvaloj;
+      let intervaloj;
 
       const words = [
             "apple", "book", "cat", "dog", "elephant", "fish", 
@@ -36,12 +39,25 @@
             "tiger", "purple", "violin", "window", "ball", 
             "yogurt", "zipper", "math", "bubble", "angry", 
             "doll", "bacon", "flag", "guitar", "honey"];
-        console.log(words);
 
         function prepracion(){
             intervaloi = setInterval(comenzar, 1000);
         }
-        
+       
+        function comenzar(){
+            if (i > 0){
+                document.getElementById("prep").innerText= i;
+                i--;
+            } else {
+                clearInterval(intervaloi);
+                document.getElementById("prep").innerText= "Empieza!!"
+                change();
+                game();
+                inicio();   
+            }
+        }
+
+
         function aleatorio(){
             const select  = words[Math.floor(Math.random()*words.length)];
             document.getElementById("letras").innerText=select;
@@ -50,10 +66,49 @@
         function game(){
             aleatorio();
         }
+        
+        function inicio(){
+            intervalok= setInterval(actua , 1000);
+        }
 
+        function change(){
+            intervaloj= setInterval(otro , 1000);
+        }
 
+        function otro(){
+            if (j > 0){
+                document.getElementById("cambio").innerText= j;
+                j--;
+            } else {
+                reinicio();
+                game();
+            }
+        }
 
+        function reinicio(){
+            clearInterval(intervaloj);
+            j=20;
+            document.getElementById("cambio").innerText= "20";
+            change();
+        }
 
+        function actua() {
+            if (k > 0) {
+                k--;
+                let minutos = Math.floor(k / 60);
+                let segundos = k % 60;
+                document.getElementById("total").innerText =
+                    (minutos < 10 ? "0" + minutos : minutos) + ":" + 
+                    (segundos < 10 ? "0" + segundos : segundos);
+            } else {
+                clearInterval(k);
+                document.getElementById("total").innerText = "¡Tiempo agotado!";
+            }
+        }
+
+        window.onload = prepracion();
     </script>
+
+
 </body>
 </html>
