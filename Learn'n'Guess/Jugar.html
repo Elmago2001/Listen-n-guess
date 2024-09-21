@@ -18,8 +18,7 @@
       let k = 180;
       let j = 20;
       let intervaloi;
-      let intervalok;
-      let intervaloj;
+      let intervalokj;
 
       const words = [
             "apple", "book", "cat", "dog", "elephant", "fish", 
@@ -51,7 +50,6 @@
             } else {
                 clearInterval(intervaloi);
                 document.getElementById("prep").innerText= "Empieza!!"
-                change();
                 game();
                 inicio();   
             }
@@ -68,29 +66,9 @@
         }
         
         function inicio(){
-            intervalok= setInterval(actua , 1000);
+            intervalokj= setInterval(actua , 1000);
         }
 
-        function change(){
-            intervaloj= setInterval(otro , 1000);
-        }
-
-        function otro(){
-            if (j > 0){
-                document.getElementById("cambio").innerText= j;
-                j--;
-            } else {
-                reinicio();
-                game();
-            }
-        }
-
-        function reinicio(){
-            clearInterval(intervaloj);
-            j=20;
-            document.getElementById("cambio").innerText= "20";
-            change();
-        }
 
         function actua() {
             if (k > 0) {
@@ -104,6 +82,20 @@
                 clearInterval(k);
                 document.getElementById("total").innerText = "¡Tiempo agotado!";
             }
+
+            if (j > 0){
+                j--;
+            } else {
+                j=20;
+                game();
+            }
+            
+            let minutos2 = Math.floor(j / 60);
+            let segundos2 = j % 60;
+            document.getElementById("cambio").innerText =
+                (minutos2 < 10 ? "0" + minutos2 : minutos2) + ":" + 
+                (segundos2 < 10 ? "0" + segundos2 : segundos2);
+
         }
 
         window.onload = prepracion();
