@@ -21,23 +21,23 @@
       let intervalokj;
 
       const words = [
-            "apple", "book", "cat", "dog", "elephant", "fish", 
-            "grape", "house", "ice", "juice", 
-            "red", "lemon", "mouse", "notebook", "orange", 
-            "pencil", "queen", "rose", "sun", "tree", 
-            "umbrella", "lion", "water", "flower", "soccer", 
-            "zebra", "air", "ball", "car", "door", 
-            "egg", "fan", "gift", "hat", "igloo", 
-            "jam", "key", "lamp", "milk", "nose", 
-            "ocean", "paint", "quiet", "ring", "star", 
-            "table", "unicorn", "vase", "whale", "soda", 
-            "yellow", "zoo", "bat", "cup", "drum", 
-            "eye", "fork", "glove", "hand", "backpack", 
-            "jacket", "cute", "leaf", "moon", "neck", 
-            "owl", "pen", "bear", "rocket", "shoe", 
-            "tiger", "purple", "violin", "window", "ball", 
-            "yogurt", "zipper", "math", "bubble", "angry", 
-            "doll", "bacon", "flag", "guitar", "honey"];
+            "Apple", "Book", "Cat", "Dog", "Elephant", "Fish", 
+            "Grape", "House", "Ice", "Juice", 
+            "Red", "Lemon", "Mouse", "Notebook", "Orange", 
+            "Pencil", "Queen", "Rose", "Sun", "Tree", 
+            "Umbrella", "Lion", "Water", "Flower", "Soccer", 
+            "Zebra", "Air", "Ball", "Car", "Door", 
+            "Egg", "Fan", "Gift", "Hat", "Igloo", 
+            "Jam", "Key", "Lamp", "Milk", "Nose", 
+            "Ocean", "Paint", "Quiet", "Ring", "Star", 
+            "Table", "Unicorn", "Vase", "Whale", "Soda", 
+            "Yellow", "Zoo", "Bat", "Cup", "Drum", 
+            "Eye", "Fork", "Glove", "Hand", "Backpack", 
+            "Jacket", "Cute", "Leaf", "Moon", "Neck", 
+            "Owl", "Pen", "Bear", "Rocket", "Shoe", 
+            "Tiger", "Purple", "Violin", "Window", "Ball", 
+            "Yogurt", "Zipper", "Math", "Bubble", "Angry", 
+            "Doll", "Bacon", "Flag", "Guitar", "Honey"];
 
         function prepracion(){
             intervaloi = setInterval(comenzar, 1000);
@@ -50,6 +50,11 @@
             } else {
                 clearInterval(intervaloi);
                 document.getElementById("prep").innerText= "Empieza!!"
+
+                setTimeout(function(){
+                    document.getElementById("prep").innerText = "";},1000   //Este comando nos ayuda a 
+                );                                                          // quitar el mensaje empieza.
+
                 game();
                 inicio();   
             }
@@ -78,16 +83,19 @@
                 document.getElementById("total").innerText =
                     (minutos < 10 ? "0" + minutos : minutos) + ":" + 
                     (segundos < 10 ? "0" + segundos : segundos);
-            } else {
-                clearInterval(k);
-                document.getElementById("total").innerText = "¡Tiempo agotado!";
-            }
 
-            if (j > 0){
+                if (j > 0){
                 j--;
-            } else {
+                }                  // Meti este bloque de datos aqui para que le afecte este condicional
+                else {             // y pueda cancelar los dos cronometros.
                 j=19;
                 game();
+                }
+
+            } else {
+                clearInterval(k);      //Aqui cierro los dos contadores.
+                clearInterval(j); 
+                document.getElementById("total").innerText = "¡Tiempo agotado!";
             }
             
             let minutos2 = Math.floor(j / 60);
