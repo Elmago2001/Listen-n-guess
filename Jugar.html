@@ -4,6 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Centrar horizontalmente */
+            align-items: center; /* Centrar verticalmente */
+            height: 100vh; /* Altura completa de la ventana */
+            background-color: #7ab3e5; /* Color de fondo */
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif; /* Fuente */
+        }
+
+        .prep {
+            font-size: 8em; /* Tamaño del texto */
+            color: #040404; /* Color del texto */
+            text-align: center; /* Alinear el texto al centro */
+        }
+
+        .cambio {
+            position: absolute; /* Posicionamiento absoluto */
+            bottom: 60px; /* Distancia desde el fondo */
+            right: 20px; /* Distancia desde la derecha */
+            font-size: 2em; /* Tamaño del texto */
+            color: #040404; /* Color del texto */
+            text-align: center; /* Alinear el texto al centro */
+        }
+
+        .total {
+            position: absolute; /* Posicionamiento absoluto */
+            bottom: 20px; /* Distancia desde el fondo */
+            right: 20px; /* Distancia desde la derecha */
+            font-size: 2em; /* Tamaño del texto */
+            color: #040404; /* Color del texto */
+            text-align: center; /* Alinear el texto al centro */  
+        }
+
+        .letras{
+            font-size: 8em; /* Tamaño del texto */
+            font-family: 'Times New Roman', sans-serif; /* Tipo de letra */
+            color: #040404; /* Color del texto */
+            margin-top: 20px; /* Espacio superior */
+        }
+
+       
+
+    </style>
+
 </head>
 <body>
     <div class="prep" id="prep"> 5 </div>
@@ -15,8 +61,8 @@
     <script>
       
       let i = 5;
-      let k = 180;
       let j = 20;
+      let k = 180;
       let intervaloi;
       let intervalokj;
 
@@ -52,11 +98,10 @@
                 document.getElementById("prep").innerText= "Empieza!!"
 
                 setTimeout(function(){
-                    document.getElementById("prep").innerText = "";},1000   //Este comando nos ayuda a 
-                );                                                          // quitar el mensaje empieza.
+                    document.getElementById("prep").innerText = ""; game();},1000  //Este comando nos ayuda a quitar el mensaje empieza 
+                );                                                                 //y despues lanza las palabras aleatorias la funcion game().
 
-                game();
-                inicio();   
+                inicio();
             }
         }
 
