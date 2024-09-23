@@ -40,6 +40,25 @@
             text-align: center; /* Alinear el texto al centro */  
         }
 
+        .contador-total, .contador-cambio {
+            position: absolute;
+            right: 20px;
+            font-size: 1.5em;
+            color: #040404;
+        }   
+
+        .contador-total {
+            bottom: 20px;
+        }
+
+        .contador-cambio {
+            bottom: 60px;
+        }
+
+        .contador-total span, .contador-cambio span {
+            margin-left: 10px; /* Para separar ligeramente el texto del contador */
+        }
+
         .letras{
             font-size: 8em; /* Tamaño del texto */
             font-family: 'Times New Roman', sans-serif; /* Tipo de letra */
@@ -48,7 +67,7 @@
         }
 
         button {
-            background-color: #4caf50; /* Color de fondo del botón */
+            background-color: #4caf50; /* Seleccion de color*/
             color: white; /* Color del texto del botón */
             border: none; /* Sin bordes */
             padding: 30px 70px; /* Espaciado interno del botón */
@@ -83,13 +102,18 @@
 
 </head>
 <body>
-
-    <button class="boton-inicio">Inicio</button>
     <button class= "boton-inicio" onclick="window.location.href='index.html'">Inicio</button>
 
     <div class="prep" id="prep"> 5 </div>
-    <div class="cambio" id="cambio"> 00:20 </div>
-    <div class="total" id="total"> 03:00 </div>
+
+    <div class="contador-total">
+        <span>Tiempo total: </span><span id="total">03:00</span>
+    </div>
+
+    <div class="contador-cambio">
+        <span>Tiempo por palabra: </span><span id="cambio">00:20</span>
+    </div>
+
     <div class="letras" id="letras"></div>
     
     
