@@ -5,38 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instrucciones</title>
     <style>
-        .caja { 
-                font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
-                color: #ffffff; 
-                font-size: 18px; 
-                font-weight: 400; 
-                text-align: left; 
-                background: #40c726; 
-                margin: 0 0 25px; 
-                overflow: hidden; 
-                padding: 20px; 
-                border-radius: 35px 0px 35px 0px; 
-                -moz-border-radius: 35px 0px 35px 0px; 
-                -webkit-border-radius: 35px 0px 35px 0px; 
-                border: 2px solid #40c726;}
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .bg {
+            animation: slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom: 0;
+            left: -50%;
+            opacity: .5;
+            position: fixed;
+            right: -50%;
+            top: 0;
+            z-index: -1;
+        }
+
+        .bg2 {
+            animation-direction: alternate-reverse;
+            animation-duration: 4s;
+        }
+
+        .bg3 {
+            animation-duration: 5s;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, .8);
+            border-radius: .25em;
+            box-shadow: 0 0 .25em rgba(0, 0, 0, .25);
+            box-sizing: border-box;
+            left: 50%;
+            padding: 10vmin;
+            position: fixed;
+            text-align: center;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h1, h2, h3 {
+            font-family: monospace;
+            color: #ff6600;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            padding: 0 20px;
+        }
+
+        ol {
+            font-size: 18px;
+            text-align: left;
+            display: inline-block;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-25%);
+            }
+            100% {
+                transform: translateX(25%);
+            }
+        }
     </style>
 </head>
 <body>
-    <h2>¿Como se juega?</h2>
-    <p>Learn'n'Guess es un juego desarrollado para poder mejorar nuestra habilidad de pronunciacion de un lenguage 
-       que en este caso sera Ingles
-    </p><br>
-    <div class="caja">   <h2>Instrucciones</h2>
+    <!-- Fondo animado -->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <!-- Contenido centrado -->
+    <div class="content">
+        <h2>¿Cómo se juega?</h2>
+        <p>Learn'n'Guess es un juego desarrollado para poder mejorar nuestra habilidad de pronunciación de un lenguaje que en este caso será inglés.</p><br>
+        <h3>Instrucciones</h3>
         <ol type="1">
-            <li>Se necesitan 2 personas o más para jugar</li>
-            <li>El juego durará 5 minutos</li>
-            <li>El jugador tendrá 30 segundos para adivinar la palabra, en caso de que la 
-                adivine o se acabe este tiempo la palabra se cambiara de forma automatica</li>
-            <li>Los demas jugadores podrán dar pistas sobre la palabra, obviamente 
-                sin mencionar la palabra que tiene que adivinar el jugador</li>
-            <li>Para adivinar la palabra el jugador deberá pronunciarla correctamente</li>
-            <li>Ganará el jugador que adivine más palabras</li>
-          </ol>
+            <li>Se necesitan 2 personas o más para jugar.</li>
+            <li>El juego durará 5 minutos.</li>
+            <li>El jugador tendrá 30 segundos para adivinar la palabra, en caso de que la adivine o se acabe este tiempo, la palabra se cambiará de forma automática.</li>
+            <li>Los demás jugadores podrán dar pistas sobre la palabra, obviamente sin mencionar la palabra que tiene que adivinar el jugador.</li>
+            <li>Para adivinar la palabra el jugador deberá pronunciarla correctamente.</li>
+            <li>Ganará el jugador que adivine más palabras.</li>
+        </ol>
     </div>
 </body>
 </html>
