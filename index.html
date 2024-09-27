@@ -17,6 +17,15 @@
             top: 0;
             z-index: -1;
         }
+        .bg2 {
+            animation-direction: alternate-reverse;
+            animation-duration: 4s;
+        }
+
+        .bg3 {
+            animation-duration: 5s;
+        }
+
         body {
             font-family: cursive, sans-serif;
             background: radial-gradient(ellipse at center,#ff9999 30%,#7ab3e5 70%); /* Color de fondo */
@@ -106,6 +115,8 @@
 
 <body>
     <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
     <button class="boton-inicio">Inicio</button>
     <button class="boton-inicio" onclick="location.reload()">Inicio</button>
 
