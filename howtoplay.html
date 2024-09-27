@@ -78,9 +78,42 @@
                 transform: translateX(25%);
             }
         }
+        .boton-inicio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: default; /* El cursor no cambiará al hover */
+        }
+        button {
+            background-color: #4caf50; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border: none; /* Sin bordes */
+            padding: 30px 70px; /* Espaciado interno del botón */
+            text-align: center; /* Alinear texto al centro */
+            text-decoration: none; /* Sin subrayado */
+            display: inline-block; /* Hacer que el botón se comporte como un bloque en línea */
+            font-size: 25px; /* Tamaño de fuente */
+            margin: 30px; /* Espacio alrededor del botón */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            border-radius: 15px; /* Bordes redondeados */
+            transition: background-color 0.3s; /* Transición suave para el color de fondo */
+        }
+
+        button:hover {
+            background-color: #45a049; /* Color del botón al pasar el mouse */
+        }
     </style>
 </head>
 <body>
+    <button class="boton-inicio">Inicio</button>
+    <button class="boton-inicio" onclick="location.reload()">Inicio</button>
+
     <!-- Fondo animado -->
     <div class="bg"></div>
     <div class="bg bg2"></div>
@@ -100,5 +133,7 @@
             <li>Ganará el jugador que adivine más palabras.</li>
         </ol>
     </div>
+    <button onclick="window.location.href='Jugar.html'">Jugar</button>
+
 </body>
 </html>
