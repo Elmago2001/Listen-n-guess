@@ -138,7 +138,7 @@
         let puntaje = 0;
         let incorrectos = 0;
 
-        const words = [
+        let words = [
             "Apple", "Book", "Cat", "Dog", "Elephant", "Fish", 
             "Grape", "House", "Ice", "Juice", 
             "Red", "Lemon", "Mouse", "Notebook", "Orange", 
@@ -180,13 +180,21 @@
         }
 
         function aleatorio() {
-            const select = words[Math.floor(Math.random() * words.length)];
-            document.getElementById("letras").innerText = select;
+            if (words.length > 0) {
+                const index = Math.floor(Math.random() * words.length);
+                const select = words[index];
+                document.getElementById("letras").innerText = select;
+                words.splice(index, 1);  // Eliminar la palabra seleccionada de la lista
+            } else {
+                document.getElementById("letras").innerText = "¡No hay más palabras!";
+                clearInterval(intervalokj);
+                document.getElementById("boton-punto").style.display = 'none';
+            }
         }
 
         function game() {
             aleatorio();
-            j = 30; // Reiniciar el contador de cambio a 20 segundos.
+            j = 30; // Reiniciar el contador de cambio a 30 segundos.
         }
 
         function inicio() {
@@ -205,7 +213,7 @@
                 if (j > 0) {
                     j--;
                 } else {
-                    incorrecto();  // Si se agota el tiempo de 20 segundos, aumenta incorrecto.
+                    incorrecto();  // Si se agota el tiempo de 30 segundos, aumenta incorrecto.
                     game();        // Cambia la palabra.
                 }
 
