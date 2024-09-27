@@ -6,6 +6,17 @@
     <title>Listen'n'Guess</title>
 
     <style>
+        .bg {
+            animation: slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom: 0;
+            left: -50%;
+            opacity: .5;
+            position: fixed;
+            right: -50%;
+            top: 0;
+            z-index: -1;
+        }
         body {
             font-family: cursive, sans-serif;
             background: radial-gradient(ellipse at center,#ff9999 30%,#7ab3e5 70%); /* Color de fondo */
@@ -94,7 +105,7 @@
 </head>
 
 <body>
-
+    <div class="bg"></div>
     <button class="boton-inicio">Inicio</button>
     <button class="boton-inicio" onclick="location.reload()">Inicio</button>
 
