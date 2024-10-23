@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #7ab3e5;
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+        }
+
+        .prep {
+            font-size: 8em;
+            color: #040404;
+            text-align: center;
+        }
+
+        .contador-total, .contador-cambio, .puntaje, .incorrectos {
+            position: absolute;
+            font-size: 2em;
+            color: #040404;
+        }
+
+        .contador-total {
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .contador-cambio {
+            bottom: 60px;
+            right: 20px;
+        }
+
+        .puntaje {
+            top: 20px;
+            right: 20px;
+        }
+
+        .incorrectos {
+            top: 60px;
+            right: 20px;
+        }
+
+        .letras {
+            font-size: 8em;
+            font-family: 'Times New Roman', sans-serif;
+            color: #040404;
+            text-align: center;
+            margin-bottom: 40px; /* Espacio inferior para el botón */
+        }
+
+        .punto {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 30px 70px;
+            font-size: 25px;
+            margin-top: 20px; /* Separación con la palabra */
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s;
+        }
+
+        .punto:hover {
+            background-color: #45a049;
+        }
+
+        .boton-inicio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        /* Botón de reinicio en la esquina inferior izquierda */
+        .boton-reiniciar {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 18px;
+            background-color: #f44336; /* Color rojo */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .boton-reiniciar:hover {
+            background-color: #d32f2f; /* Cambio de color al pasar el mouse */
+        }
+
+    </style>
+</head>
+<body>
+    <button class="boton-inicio" onclick="window.location.href='index.html'">Inicio</button>
+
+    <div class="prep" id="prep">5</div>
+
+    <div class="contador-total">
+        <span>Tiempo total: </span><span id="total">05:00</span>
+    </div>
+
+    <div class="contador-cambio">
+        <span>Tiempo por palabra: </span><span id="cambio">00:30</span>
+    </div>
+
+    <div class="letras" id="letras"></div>
+
+    <div class="puntaje" id="puntaje">Correctas: 0</div>
+    <div class="incorrectos" id="incorrectos">Incorrectas: 0</div>
+
+    <!-- Botón centrado debajo de la palabra -->
+    <button class="punto" id="boton-punto" onclick="punto()">Acierto</button>
+
+    <!-- Botón para reiniciar el juego -->
+    <button class="boton-reiniciar" onclick="reiniciar()">Reiniciar</button>
+
+    <script>
+        let i = 5;
+        let j = 30;
+        let k = 300;
+        let intervaloi;
+        let intervalokj;
+        let puntaje = 0;
+        let incorrectos = 0;
+
+        let words = [
+            "pomme", "livre", "chat", "chien", "éléphant", "poisson", 
+            "raisin", "maison", "glace", "jus", 
+            "rouge", "citron", "souris", "cahier", "orange", 
+            "crayon", "reine", "rose", "soleil", "arbre"
+        ];
+
+        function prepracion() {
+            intervaloi = setInterval(comenzar, 1000);
+        }
+
+        function comenzar() {
+            if (i > 0) {
+                document.getElementById("prep").innerText = i;
+                i--;
+            } else {
+                clearInterval(intervaloi);
+                document.getElementById("prep").innerText = "¡Empieza!";
+
+                setTimeout(function () {
+                    document.getElementById("prep").innerText = "";
+                    game();
+                }, 1000);
+
+                inicio();
+            }
+        }
+
+        function aleatorio() {
+            if (words.length > 0) {
+                const index = Math.floor(Math.random() * words.length);
+                const select = words[index];
+                document.getElementById("letras").innerText = select;
+                words.splice(index, 1);  // Eliminar la palabra seleccionada de la lista
+            } else {
+                document.getElementById("letras").innerText = "¡No hay más palabras!";
+                clearInterval(intervalokj);
+                document.getElementById("boton-punto").style.display = 'none';
+            }
+        }
+
+        function game() {
+            aleatorio();
+            j = 30; // Reiniciar el contador de cambio a 30 segundos.
+        }
+
+        function inicio() {
+            intervalokj = setInterval(actua, 1000);
+        }
+
+        function actua() {
+            if (k > 0) {
+                k--;
+                let minutos = Math.floor(k / 60);
+                let segundos = k % 60;
+                document.getElementById("total").innerText =
+                    (minutos < 10 ? "0" + minutos : minutos) + ":" + 
+                    (segundos < 10 ? "0" + segundos : segundos);
+
+                if (j > 0) {
+                    j--;
+                } else {
+                    incorrecto();  // Si se agota el tiempo de 30 segundos, aumenta incorrecto.
+                    game();        // Cambia la palabra.
+                }
+
+            } else {
+                clearInterval(intervalokj);
+                document.querySelector('.contador-total').innerHTML = "¡Tiempo agotado!";
+                document.getElementById("boton-punto").style.display = 'none';  // Ocultar botón de acierto
+            }
+
+            let minutos2 = Math.floor(j / 60);
+            let segundos2 = j % 60;
+            document.getElementById("cambio").innerText =
+                (minutos2 < 10 ? "0" + minutos2 : minutos2) + ":" + 
+                (segundos2 < 10 ? "0" + segundos2 : segundos2);
+        }
+
+        function punto() {
+            puntaje++;
+            document.getElementById("puntaje").innerText = "Correctas: " + puntaje;
+            game(); // Cambiar palabra al acertar
+        }
+
+        function incorrecto() {
+            incorrectos++;
+            document.getElementById("incorrectos").innerText = "Incorrectas: " + incorrectos;
+        }
+
+        // Función para reiniciar el juego
+        function reiniciar() {
+            location.reload();
+        }
+
+        window.onload = prepracion;
+    </script>
+</body>
+</html>

@@ -21,79 +21,93 @@
             animation-direction: alternate-reverse;
             animation-duration: 4s;
         }
-
         .bg3 {
             animation-duration: 5s;
         }
 
         body {
             font-family: cursive, sans-serif;
-            background: radial-gradient(ellipse at center,#ff9999 30%,#7ab3e5 70%); /* Color de fondo */
-            text-align: center; /* Centrar el texto */
-            margin: 0; /* Eliminar márgenes por defecto */
-            padding: 0; /* Espaciado interno */
-            height: 100vh; /* Asegurar que el fondo cubra toda la pantalla */
-            display: flex; /* Para centrar verticalmente el contenido */
+            background: radial-gradient(ellipse at center,#ff9999 30%,#7ab3e5 70%);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
             flex-direction: column;
             justify-content: flex-start;
         }
 
         header {
-            margin-top: 50px; /* Ajusta el espacio superior del título */
+            margin-top: 50px;
         }
 
         h1 {
-            color: #040404; /* Color del título */
-            font-size: 6.5em; /* Tamaño de fuente */
-            margin-bottom: 50px; /* Espacio debajo del título */
-            display: flex; /* Usar flexbox para alinear */
-            justify-content: center; /* Centrar el texto */
-            position: relative; /* Necesario para el posicionamiento */
+            color: #040404;
+            font-size: 6.5em;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            position: relative;
         }
 
         h1 span {
             display: inline-block;
-            transform-origin: bottom center; /* Centro de transformación */
+            transform-origin: bottom center;
         }
 
-        /* Ajusta los ángulos según sea necesario */
         h1 span:nth-child(1) { transform: rotate(-30deg) translateY(30px) translateX(-10px); }
-        h1 span:nth-child(2) { transform: rotate(-25deg) translateY(6px) translateX(-5px); }
-        h1 span:nth-child(3) { transform: rotate(-25deg) translateY(-10px) translateX(0px);}
-        h1 span:nth-child(4) { transform: rotate(-15deg) translateY(-25px) translateX(-8px); }
-        h1 span:nth-child(5) { transform: rotate(-8deg) translateY(-40px) translateX(-15px); }
-        h1 span:nth-child(6) { transform: rotate(-7deg) translateY(-55px) translateX(-12px); }
-        h1 span:nth-child(7) { transform: rotate(-4deg) translateY(-48px) translateX(-22px); }
-        h1 span:nth-child(8) { transform: rotate(-3deg) translateY(-65px) translateX(-15px); }
-        h1 span:nth-child(9) { transform: rotate(-5deg) translateY(-55px) translateX(-6px); }
-        h1 span:nth-child(10) { transform: rotate(0deg) translateY(-60px) translateX(-20px); }
-        h1 span:nth-child(11) { transform: rotate(8deg) translateY(-50px) translateX(-25px); }
-        h1 span:nth-child(12) { transform: rotate(22deg) translateY(-28px) translateX(-37px); }
-        h1 span:nth-child(13) { transform: rotate(23deg) translateY(-8px) translateX(-32px); }
-        h1 span:nth-child(14) { transform: rotate(28deg) translateY(17px) translateX(-27px); }
         h1 span:nth-child(15) { transform: rotate(28deg) translateY(34px) translateX(-22px); }
         
         main {
-            margin-top: 50px; /* Ajusta este valor según necesites más espacio entre el título y los botones */
+            margin-top: 50px;
         }
 
         button {
-            background-color: #4caf50; /* Color de fondo del botón */
-            color: white; /* Color del texto del botón */
-            border: none; /* Sin bordes */
-            padding: 30px 70px; /* Espaciado interno del botón */
-            text-align: center; /* Alinear texto al centro */
-            text-decoration: none; /* Sin subrayado */
-            display: inline-block; /* Hacer que el botón se comporte como un bloque en línea */
-            font-size: 25px; /* Tamaño de fuente */
-            margin: 30px; /* Espacio alrededor del botón */
-            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-            border-radius: 15px; /* Bordes redondeados */
-            transition: background-color 0.3s; /* Transición suave para el color de fondo */
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 30px 70px;
+            text-align: center;
+            display: inline-block;
+            font-size: 25px;
+            margin: 30px;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049; /* Color del botón al pasar el mouse */
+            background-color: #45a049;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 15px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
         
         .boton-inicio {
@@ -106,7 +120,7 @@
             padding: 10px 20px;
             border-radius: 8px;
             border: none;
-            cursor: default; /* El cursor no cambiará al hover */
+            cursor: default;
         }
 
     </style>
@@ -140,8 +154,16 @@
         </h1>
     </header>
     <main>
-    <button onclick="window.location.href='howtoplay.html'">¿Como se juega?</button>
-    <button onclick="window.location.href='Jugar.html'">Jugar</button>
+        <button onclick="window.location.href='howtoplay.html'">¿Como se juega?</button>
+        
+        <!-- Menú desplegable para elegir la versión -->
+        <div class="dropdown">
+            <button>Jugar</button>
+            <div class="dropdown-content">
+                <a href="Jugar.html">Versión en inglés</a>
+                <a href="jugarf.html">Versión en francés</a>
+            </div>
+        </div>
     </main>
 </body>
 
